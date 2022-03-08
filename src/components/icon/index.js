@@ -6,7 +6,7 @@ const IconStyle = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 2px
+  margin-right: 2px;
 `;
 
 function Icon(props) {

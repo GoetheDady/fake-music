@@ -25,5 +25,7 @@ module.exports = {
     'max-len': ['error', { code: 200 }],
     'react/jsx-props-no-spreading': [0],
     'react/react-in-jsx-scope': [0],
+    'default-param-last': [0],
+    'no-underscore-dangle': [0]
   },
 };

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  RecommendStyle, RecommendColumn, RecommendTitle,
-} from './style';
+import { RecommendStyle, RecommendColumn, RecommendTitle } from './style';
 import BoutiqueList from './components/boutiqueList';
 import NewSongList from './components/newSongList';
 import DjprogramList from './components/djprogramList';
@@ -14,12 +12,15 @@ function Recommend() {
 
   useEffect(() => {
     const getList = async () => {
-      const { result: boutique } = await request.get('/personalized?limit=6');
-      const { result: newSong } = await request.get('/personalized/newsong?limit=9');
-      const { result: djprogram } = await request.get('/personalized/djprogram');
-      setBoutiqueList(boutique);
-      setNewSongList(newSong);
-      setDjprogramList(djprogram);
+      request.get('/personalized?limit=6').then(({ result }) => {
+        setBoutiqueList(result);
+      });
+      request.get('/personalized/newsong?limit=9').then(({ result }) => {
+        setNewSongList(result);
+      });
+      request.get('/personalized/djprogram').then(({ result }) => {
+        setDjprogramList(result);
+      });
     };
     getList();
   }, []);

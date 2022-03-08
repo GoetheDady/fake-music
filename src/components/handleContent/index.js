@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import _find from 'lodash/find';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   HandleContentStyle, ItemWrapper, SpanIcon, SearchWrapper,
 } from './style';
+import { constants as reducerConstants } from '../../pages/search/store';
 
 const searchStyle = {
   position: 'absolute',
@@ -35,6 +37,8 @@ const handleList = [{
 }];
 
 function HandleContent() {
+  const { keywords } = useSelector((state) => state.SearchStore);
+  const dispatch = useDispatch();
   const [activeNum, setActiveNum] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -68,7 +72,13 @@ function HandleContent() {
           navigate('/search');
         }}
       >
-        <SearchWrapper />
+        <SearchWrapper
+          value={keywords}
+          onChange={(e) => {
+            const { target: { value } } = e;
+            dispatch({ type: reducerConstants.CHANGE_KEYWORDS, payload: value });
+          }}
+        />
         <SpanIcon style={searchStyle}>
           <ion-icon name="search-outline" />
         </SpanIcon>

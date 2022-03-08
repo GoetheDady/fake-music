@@ -32,7 +32,6 @@ function SingDetail() {
     });
     // 获取歌手mv
     request.get('/artist/mv', { params: { id, limit: 10 } }).then(({ mvs }) => {
-      console.log(mvs);
       setMvList(mvs);
     });
   };

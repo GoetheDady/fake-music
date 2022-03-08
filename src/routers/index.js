@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import {
   Routes,
   Route,
@@ -12,6 +12,7 @@ const TopList = lazy(() => import('../pages/topList'));
 const Singer = lazy(() => import('../pages/singer'));
 const SingDetail = lazy(() => import('../pages/singerDetail'));
 const SingerHotSongsList = lazy(() => import('../pages/singerHotSongsList'));
+const Search = lazy(() => import('../pages/search'));
 
 function Routers() {
   return (
@@ -24,6 +25,7 @@ function Routers() {
         <Route exact path="/singer" element={<Singer />} />
         <Route exact path="/singerDetail/:id" element={<SingDetail />} />
         <Route exact path="/singerHotSongsList/:id" element={<SingerHotSongsList />} />
+        <Route exact path="/search" element={<Search />} />
         <Route path="/dashboard" element={<div>22</div>} />
       </Routes>
     </Suspense>

@@ -13,10 +13,7 @@ const request = Axios.create({
 
 request.interceptors.response.use(
   (res) => res.data, // 这里直接返回data, 即接口返回的所有数据
-  (error) => {
-    console.log(error.message);
-    return {};
-  },
+  (error) => (error),
 );
 
 export default request;

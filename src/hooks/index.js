@@ -1,7 +1,8 @@
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 
 export function withRouter(Target) {
-  return function addProps(props) {
+  // eslint-disable-next-line func-names
+  return function (props) {
     const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();
