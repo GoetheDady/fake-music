@@ -50,21 +50,39 @@ function SingDetail() {
         </DetailAvatarBottom>
       </SingerDetailTop>
       <SingerDetailBottom>
-        <DetailBottomTitle>
-          热门歌曲
-          <DetailBottomSubTitle onClick={() => { navigate(`/singerHotSongsList/${params.id}`); }}>显示全部</DetailBottomSubTitle>
-        </DetailBottomTitle>
-        <NewSongList list={topSongs} type="singer" />
-        <DetailBottomTitle>
-          专辑
-          <DetailBottomSubTitle>显示全部</DetailBottomSubTitle>
-        </DetailBottomTitle>
-        <AlbumList list={hotAlbum} type="singer" length={10} />
-        <DetailBottomTitle>
-          热门视频
-          <DetailBottomSubTitle>显示全部</DetailBottomSubTitle>
-        </DetailBottomTitle>
-        <MvList list={mvList} />
+        {
+          topSongs.length !== 0 && (
+            <>
+              <DetailBottomTitle>
+                热门歌曲
+                <DetailBottomSubTitle onClick={() => { navigate(`/singerHotSongsList/${params.id}`); }}>显示全部</DetailBottomSubTitle>
+              </DetailBottomTitle>
+              <NewSongList list={topSongs} type="singer" />
+            </>
+          )
+        }
+        {
+          hotAlbum.length !== 0 && (
+            <>
+              <DetailBottomTitle>
+                专辑
+                <DetailBottomSubTitle>显示全部</DetailBottomSubTitle>
+              </DetailBottomTitle>
+              <AlbumList list={hotAlbum} type="singer" length={10} />
+            </>
+          )
+        }
+        {
+          mvList.length !== 0 && (
+            <>
+              <DetailBottomTitle>
+                热门视频
+                <DetailBottomSubTitle>显示全部</DetailBottomSubTitle>
+              </DetailBottomTitle>
+              <MvList list={mvList} />
+            </>
+          )
+        }
       </SingerDetailBottom>
       <SingerDesc artics={detail} />
     </SingerDetailStyle>

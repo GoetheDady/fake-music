@@ -7,6 +7,7 @@ import SelectOptions from './components/selectOptions';
 import Loading from '../../components/loading';
 import request from '../../api';
 import SingerList from './components/singerList';
+import { useLazyImg } from '../../hooks';
 
 class Singer extends Component {
   constructor(props) {
@@ -52,6 +53,19 @@ class Singer extends Component {
         initial,
       },
     });
+    const artistsList = artists.map((item) => new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        img.onload = null;
+        resolve(img);
+      };
+      img.error = () => {
+        reject(new Error('图片加载失败'));
+      };
+      img.src = item.img1v1Url;
+    }));
+
+    await Promise.all(artistsList);
     const newList = _concat(list, artists);
     if (!more) {
       this.listDom.current.onscroll = null;

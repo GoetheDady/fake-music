@@ -1,16 +1,19 @@
+import { useEffect, useState } from 'react';
 import {
   DjprogramListStyle, DjprogramItem, DjprogramItemImgWrapper,
   DjprogramItemImg, DjprogramItemDesc, DjprogramItemSongName,
   DjprogramItemDjDesc, DjprogramItemImgMask,
 } from './style';
 import Loading from '../../../components/loading';
+import { useLazyImg } from '../../../hooks';
 
 function DjprogramList(props) {
   const { list = [], type = '', length = 6 } = props;
+  const showList = useLazyImg(list.map((item) => (type === 'singer' ? item.blurPicUrl : item.picUrl)));
   return (
     <DjprogramListStyle height="228px" length={length}>
       {
-        list.length === 0 ? <Loading /> : list.map((item) => (
+        showList && list.length !== 0 ? list.map((item) => (
           <DjprogramItem key={item.id}>
             <DjprogramItemImgWrapper>
               <DjprogramItemImg src={type === 'singer' ? item.blurPicUrl : item.picUrl} />
@@ -23,7 +26,7 @@ function DjprogramList(props) {
               </DjprogramItemDjDesc>
             </DjprogramItemDesc>
           </DjprogramItem>
-        ))
+        )) : <Loading />
       }
     </DjprogramListStyle>
   );

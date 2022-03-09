@@ -5,24 +5,30 @@ import {
 } from './style';
 import Icon from '../../../components/icon';
 import { calculatePlayCount, formatDuration } from '../../../utils';
+import { useLazyImg } from '../../../hooks';
 
-function MvList({ list }) {
+function MvList({ list = [] }) {
+  const showList = useLazyImg(list.map((item) => item.imgurl16v9 || item.coverUrl));
   return (
     <MvListStyle>
       {
-        list.map((item) => (
-          <MvListItem key={item.id}>
+        showList && list.map((item) => (
+          <MvListItem key={item.id || item.vid}>
             <ImgMaskWrapper>
-              <MvListItemImg src={item.imgurl16v9} />
+              <MvListItemImg src={item.imgurl16v9 || item.coverUrl} />
               <ImgMask>
-                <ItemPlayCount>
-                  <Icon name="play-outline" fontSize="14px" />
-                  {calculatePlayCount(item.playCount)}
-                </ItemPlayCount>
-                <ItemDuration>{formatDuration(item.duration)}</ItemDuration>
+                {
+                  item.playCount && (
+                    <ItemPlayCount>
+                      <Icon name="play-outline" fontSize="14px" />
+                      {calculatePlayCount(item.playCount)}
+                    </ItemPlayCount>
+                  )
+                }
+                <ItemDuration>{formatDuration(item.duration || item.durationms)}</ItemDuration>
               </ImgMask>
             </ImgMaskWrapper>
-            {item.name}
+            {item.name || item.title}
           </MvListItem>
         ))
       }

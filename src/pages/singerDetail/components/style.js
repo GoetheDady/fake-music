@@ -27,6 +27,8 @@ export const ImgMaskWrapper = styled.div`
   width: 100%;
   height: 140px;
   margin-bottom: 5px;
+  border-radius: 8px;
+  overflow: hidden;
   position: relative;
 `;
 

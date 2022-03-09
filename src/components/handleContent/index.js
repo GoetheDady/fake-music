@@ -76,7 +76,29 @@ function HandleContent() {
           value={keywords}
           onChange={(e) => {
             const { target: { value } } = e;
-            dispatch({ type: reducerConstants.CHANGE_KEYWORDS, payload: value });
+            dispatch({
+              type: reducerConstants.CHANGE_KEYWORDS,
+              payload: value,
+            });
+          }}
+          onKeyUp={({ code, target: { value } }) => {
+            console.log(code, value);
+            if (code === 'Enter' && value) {
+              dispatch({
+                type: reducerConstants.CHANGE_KEYWORDS,
+                payload: value,
+              });
+              dispatch({
+                type: reducerConstants.BEGIN_SEARCH,
+                payload: true,
+              });
+            }
+            if (!value) {
+              dispatch({
+                type: reducerConstants.CLEAR_DATA,
+                payload: false,
+              });
+            }
           }}
         />
         <SpanIcon style={searchStyle}>

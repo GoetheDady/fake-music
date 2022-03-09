@@ -4,13 +4,16 @@ import {
   NewSongItemArtist, NewSongItemImgMask,
 } from './style';
 import Loading from '../../../components/loading';
+import { useLazyImg } from '../../../hooks';
 
 function NewSongList(props) {
   const { list = [], type = '' } = props;
+  const imageList = list.map((item) => (type === 'singer' ? item.al?.picUrl : item.picUrl));
+  const showList = useLazyImg(imageList);
   return (
     <NewSongListStyle height="180px">
       {
-        list.length === 0 ? <Loading /> : list.map((item) => (
+        (showList && list.length !== 0) ? list.map((item) => (
           <NewSongItem key={item.id}>
             <NewSongItemImgWrapper>
               <NewSongItemImg src={type === 'singer' ? item.al?.picUrl : item.picUrl} />
@@ -32,7 +35,7 @@ function NewSongList(props) {
               <ion-icon name="add-outline" />
             </NewSongItemAdd>
           </NewSongItem>
-        ))
+        )) : <Loading />
       }
     </NewSongListStyle>
   );

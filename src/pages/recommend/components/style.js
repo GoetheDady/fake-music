@@ -22,7 +22,7 @@ const itemCommon = `
 const BoutiqueListStyle = styled.div`
   ${listCommon}
   height: ${(props) => props.height || 'auto'};
-  grid-template-columns: repeat(6, 214px);
+  grid-template-columns: repeat(${(props) => props.length}, 214px);
 `;
 
 const BoutiqueItem = styled.div`
@@ -104,6 +104,7 @@ const DjprogramItemImgWrapper = styled.div`
 const DjprogramItemImg = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 8px;
   object-fit: cover;
 `;
 

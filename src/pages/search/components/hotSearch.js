@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { COLOR_ENUM } from './constants';
-import Icon from '../../../../components/icon';
+import Icon from '../../../components/icon';
+import { constants } from '../store';
 
 const HotSearchStyle = styled.div`
   width: 100%;
@@ -48,13 +50,21 @@ const ListItemMask = styled.div`
 `;
 
 function HotSearch({ list = [] }) {
+  const dispatch = useDispatch();
   return (
     <HotSearchStyle>
       <HotSearchTitle>热门搜索</HotSearchTitle>
       <HotSearchList>
         {
           list.map((item, index) => (
-            <ListItem key={item.searchWord} background={COLOR_ENUM[index % 7]}>
+            <ListItem
+              key={item.searchWord}
+              background={COLOR_ENUM[index % 7]}
+              onClick={() => {
+                dispatch({ type: constants.CHANGE_KEYWORDS, payload: item.searchWord });
+                dispatch({ type: constants.BEGIN_SEARCH, payload: true });
+              }}
+            >
               <ListItemMask>
                 {
                   index < 3 && <Icon name="flame" color="red" />

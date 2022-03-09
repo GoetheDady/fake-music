@@ -6,7 +6,6 @@ import Icon from '../../../components/icon';
 
 function SingerList({ list }) {
   const navigate = useNavigate();
-
   return (
     <SingerListStyle>
       {
