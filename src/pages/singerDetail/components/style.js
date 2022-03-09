@@ -8,7 +8,7 @@ export const MvListStyle = styled.div`
   scrollbar-width: none;
   grid-template-columns: repeat(10, 240px);
   position: relative;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   &::-webkit-scrollbar {
     display: none; /* Chrome Safari */
   }

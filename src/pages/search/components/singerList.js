@@ -38,15 +38,15 @@ const ListName = styled.div`
 `;
 
 function SingerList({ list = [] }) {
-  const showList = useLazyImg(list.map((item) => item.img1v1Url));
+  const showList = useLazyImg(list.map((item) => item.img1v1Url || item.avatarUrl));
   return (
     <ListStyle length={list.length}>
       {
         showList && list.map((item) => (
           <ListItem key={item.id}>
-            <ListAvatar src={item.img1v1Url} />
+            <ListAvatar src={item.img1v1Url || item.avatarUrl} />
             <ListName>
-              {item.name}
+              {item.name || item.nickname}
             </ListName>
           </ListItem>
         ))

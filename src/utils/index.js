@@ -12,10 +12,10 @@ export const calculatePlayCount = (count) => {
   return num;
 };
 
-export const formatDuration = (time) => {
+export const formatDuration = (time = 0) => {
   const s = Math.floor(time / 1000);
-  let duration = '';
-  if (s < 60) {
+  let duration = '00:00';
+  if (s < 60 && s > 0) {
     duration = `00:${s}`;
   } else {
     const remainM = {

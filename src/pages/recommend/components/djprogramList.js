@@ -10,6 +10,16 @@ import { useLazyImg } from '../../../hooks';
 function DjprogramList(props) {
   const { list = [], type = '', length = 6 } = props;
   const showList = useLazyImg(list.map((item) => (type === 'singer' ? item.blurPicUrl : item.picUrl)));
+  const djDesc = (item) => {
+    switch (type) {
+      case 'singer':
+        return item.desciption;
+      case 'radio':
+        return item.dj.nickname;
+      default:
+        return item.program.dj.nickname;
+    }
+  };
   return (
     <DjprogramListStyle height="228px" length={length}>
       {
@@ -22,7 +32,7 @@ function DjprogramList(props) {
             <DjprogramItemDesc>
               <DjprogramItemSongName>{item.name}</DjprogramItemSongName>
               <DjprogramItemDjDesc>
-                {type === 'singer' ? item.desciption : item.program.dj.nickname}
+                {djDesc(item)}
               </DjprogramItemDjDesc>
             </DjprogramItemDesc>
           </DjprogramItem>

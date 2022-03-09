@@ -8,14 +8,14 @@ import { calculatePlayCount, formatDuration } from '../../../utils';
 import { useLazyImg } from '../../../hooks';
 
 function MvList({ list = [] }) {
-  const showList = useLazyImg(list.map((item) => item.imgurl16v9 || item.coverUrl));
+  const showList = useLazyImg(list.map((item) => item.imgurl16v9 || item.coverUrl || item.cover));
   return (
     <MvListStyle>
       {
         showList && list.map((item) => (
           <MvListItem key={item.id || item.vid}>
             <ImgMaskWrapper>
-              <MvListItemImg src={item.imgurl16v9 || item.coverUrl} />
+              <MvListItemImg src={item.imgurl16v9 || item.coverUrl || item.cover} />
               <ImgMask>
                 {
                   item.playCount && (

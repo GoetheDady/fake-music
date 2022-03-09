@@ -9,6 +9,9 @@ const store = {
   searchSongs: [],
   searchSongsList: [],
   searchMvList: [],
+  searchRadio: [],
+  searchVideo: [],
+  searchUser: [],
 };
 
 export const constants = {
