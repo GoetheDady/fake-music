@@ -82,7 +82,7 @@ function HandleContent() {
             });
           }}
           onKeyUp={({ code, target: { value } }) => {
-            console.log(code, value);
+            // console.log(code, value);
             if (code === 'Enter' && value) {
               dispatch({
                 type: reducerConstants.CHANGE_KEYWORDS,

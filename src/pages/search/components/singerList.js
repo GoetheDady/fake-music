@@ -43,7 +43,7 @@ function SingerList({ list = [] }) {
     <ListStyle length={list.length}>
       {
         showList && list.map((item) => (
-          <ListItem key={item.id}>
+          <ListItem key={item.id || item.userId}>
             <ListAvatar src={item.img1v1Url || item.avatarUrl} />
             <ListName>
               {item.name || item.nickname}

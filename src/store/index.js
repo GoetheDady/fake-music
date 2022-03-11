@@ -6,6 +6,6 @@ const rootReducer = combineReducers({
   SearchStore,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;

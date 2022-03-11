@@ -8,7 +8,9 @@ import Loading from '../../../components/loading';
 import { useLazyImg } from '../../../hooks';
 
 function DjprogramList(props) {
-  const { list = [], type = '', length = 6 } = props;
+  const {
+    list = [], type = '', length = 6,
+  } = props;
   const showList = useLazyImg(list.map((item) => (type === 'singer' ? item.blurPicUrl : item.picUrl)));
   const djDesc = (item) => {
     switch (type) {

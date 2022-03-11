@@ -41,14 +41,14 @@ function Search() {
   const getAllData = async () => {
     // console.log('开始请求');
     const [
-      { result: { artists } }, // 歌手
-      { result: { albums } }, // 专辑
-      { result: { songs } }, // 单曲
-      { result: { playlists } }, // 歌单
-      { result: { videos } }, // 视频
-      { result: { djRadios } }, // 电台
-      { result: { mvs } },
-      { result: { userprofiles } },
+      { result: { artists = [] } }, // 歌手
+      { result: { albums = [] } }, // 专辑
+      { result: { songs = [] } }, // 单曲
+      { result: { playlists = [] } }, // 歌单
+      { result: { videos = [] } }, // 视频
+      { result: { djRadios = [] } }, // 电台
+      { result: { mvs = [] } },
+      { result: { userprofiles = [] } },
     ] = await Promise.all([
       getSearchData(100, 10), // 歌手
       getSearchData(10, 10), // 专辑
@@ -59,6 +59,7 @@ function Search() {
       getSearchData(1004, 10), // mv
       getSearchData(1002, 10), // 用户
     ]);
+    console.log(djRadios);
     dispatch({
       type: constants.SET_ALL_DATA,
       payload: {
@@ -150,7 +151,7 @@ function Search() {
                 )
               }
               {
-                searchAlbum.searchRadio !== 0 && (
+                searchRadio.length !== 0 && (
                   <SearchResultItem>
                     <ResultItemTitle>电台</ResultItemTitle>
                     <AlbumList list={searchRadio} type="radio" length={10} />
