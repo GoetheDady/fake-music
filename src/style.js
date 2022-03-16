@@ -26,6 +26,9 @@ const Background = styled.div`
   align-items: center;
   padding-top: 50px;
   box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 const BackgroundTitle = styled.div`

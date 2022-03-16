@@ -13,6 +13,7 @@ const Singer = lazy(() => import('../pages/singer'));
 const SingDetail = lazy(() => import('../pages/singerDetail'));
 const SingerHotSongsList = lazy(() => import('../pages/singerHotSongsList'));
 const Search = lazy(() => import('../pages/search'));
+const Video = lazy(() => import('../pages/video'));
 
 function Routers() {
   return (
@@ -26,6 +27,7 @@ function Routers() {
         <Route exact path="/singerDetail/:id" element={<SingDetail />} />
         <Route exact path="/singerHotSongsList/:id" element={<SingerHotSongsList />} />
         <Route exact path="/search" element={<Search />} />
+        <Route exact path="/video" element={<Video />} />
         <Route path="/dashboard" element={<div>22</div>} />
       </Routes>
     </Suspense>

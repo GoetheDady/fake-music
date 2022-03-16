@@ -1,3 +1,6 @@
+import ReactDom, { createPortal } from 'react-dom';
+import PopupWindow from '../components/popupWindow';
+
 export const calculatePlayCount = (count) => {
   const countStr = count.toString();
   const { length } = countStr.split('');
@@ -31,4 +34,32 @@ export const formatDuration = (time = 0) => {
     duration = `${mm}:${ss}`;
   }
   return duration;
+};
+
+export const message = (props) => {
+  let div = document.querySelector('#popup-window');
+  console.log('有没有pop', div);
+  if (!div) {
+    div = document.createElement('div');
+    div.setAttribute('id', 'popup-window');
+    document.body.appendChild(div);
+  }
+
+  const currentConfig = { ...props };
+
+  const destroy = () => {
+    const unmountResult = ReactDom.unmountComponentAtNode(div);
+    if (unmountResult && div.parentNode) {
+      div.parentNode.removeChild(div);
+    }
+  };
+
+  const render = (config) => {
+    ReactDom.render(
+      <PopupWindow destroy={destroy} {...config} />,
+      div,
+    );
+  };
+
+  render(currentConfig);
 };
