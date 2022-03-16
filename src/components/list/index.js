@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from 'react-redux';
 import {
   ListStyle, ListHeader, ListHeaderItem, ListBody, ListItem, ListItemOptions,
   ListItemOptionsItem, ListItemOptionsImg,
@@ -5,9 +6,21 @@ import {
 import Icon from '../icon';
 import { formatDuration } from '../../utils';
 import MaskCover from '../maskCover';
+import { constants } from '../player/store';
 
 function List(props) {
   const { list: songList = [] } = props;
+  const dispatch = useDispatch();
+
+  const playCurrentSong = (item) => {
+    dispatch({
+      type: constants.PLAYER_ADD_SONG_AND_PLAY,
+      payload: {
+        item,
+      },
+    });
+  };
+
   return (
     <ListStyle>
       <ListHeader>
@@ -21,7 +34,7 @@ function List(props) {
       <ListBody>
         {
           songList.map((item) => (
-            <ListItem key={item.id}>
+            <ListItem key={item.id} onDoubleClick={() => { playCurrentSong(item); }}>
               <ListItemOptions>
                 <MaskCover
                   style={{ 'margin-right': '10px' }}

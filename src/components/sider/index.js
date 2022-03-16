@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { SiderStyle, SiderHeader, SpanIcon } from './style';
 import HandleContent from '../handleContent';
+import Player from '../player';
 
 function Sider() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function Sider() {
         </SpanIcon>
       </SiderHeader>
       <HandleContent />
+      <Player />
     </SiderStyle>
   );
 }

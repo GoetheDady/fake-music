@@ -38,7 +38,6 @@ export const formatDuration = (time = 0) => {
 
 export const message = (props) => {
   let div = document.querySelector('#popup-window');
-  console.log('有没有pop', div);
   if (!div) {
     div = document.createElement('div');
     div.setAttribute('id', 'popup-window');

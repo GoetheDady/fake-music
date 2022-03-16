@@ -59,7 +59,6 @@ function Search() {
       getSearchData(1004, 10), // mv
       getSearchData(1002, 10), // 用户
     ]);
-    console.log(djRadios);
     dispatch({
       type: constants.SET_ALL_DATA,
       payload: {

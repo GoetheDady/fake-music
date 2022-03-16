@@ -4,6 +4,7 @@ const SiderStyle = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 `;
 
 const SiderHeader = styled.div`

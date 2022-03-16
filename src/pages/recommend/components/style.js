@@ -79,6 +79,7 @@ const SpanTitle = styled.span`
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
+  padding: 0 20px;
   > *{
     margin-right: 4px;
   }

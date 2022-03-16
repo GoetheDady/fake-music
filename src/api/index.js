@@ -13,14 +13,10 @@ const request = Axios.create({
 });
 
 request.interceptors.response.use(
-  (res) => {
-    console.log('res', res);
-    return res.data;
-  }, // 这里直接返回data, 即接口返回的所有数据
+  (res) => res.data, // 这里直接返回data, 即接口返回的所有数据
   (error) => {
     const { response: { data: { code, msg, message: sysMessage }, data } } = error;
     if (code === 301) {
-      console.log(msg);
       message({
         type: 'error',
         msg,
