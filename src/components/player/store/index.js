@@ -27,7 +27,8 @@ export const reducer = (state = store, action) => {
     }
     case constants.PLAYER_ADD_SONG_AND_PLAY: {
       const { item } = payload;
-      if (_findIndex(playList, (o) => o.id === item.id) < 0) {
+      const findIndex = _findIndex(playList, (o) => o.id === item.id);
+      if (findIndex < 0) {
         const newList = [...state.playList, item];
         setNewSongAndIndex(newList, newList.length - 1);
         return {
@@ -37,7 +38,12 @@ export const reducer = (state = store, action) => {
           playing: true,
         };
       }
-      return { ...state };
+      setNewSongAndIndex(state.playList, findIndex);
+      return {
+        ...state,
+        currentPlayIndex: findIndex,
+        playing: true,
+      };
     }
     case constants.PLAYER_CHANGE_PLAYING: {
       return {

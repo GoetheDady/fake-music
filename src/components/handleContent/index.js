@@ -8,6 +8,7 @@ import {
   HandleContentStyle, ItemWrapper, SpanIcon, SearchWrapper,
 } from './style';
 import { constants as reducerConstants } from '../../pages/search/store';
+import request from '../../api';
 
 const searchStyle = {
   position: 'absolute',
@@ -21,16 +22,19 @@ const handleList = [{
   title: '发现音乐',
   icon: 'musical-note-outline',
   url: '/',
+  auth: true,
 }, {
   id: 1,
   title: '看视频',
   icon: 'videocam-outline',
   url: '/video',
+  auth: false,
 }, {
   id: 2,
   title: '朋友',
   icon: 'people-outline',
   url: '/frieds',
+  auth: false,
 }, {
   id: 666,
   url: '/search',
@@ -49,7 +53,13 @@ function HandleContent() {
     navigate(url);
   };
 
+  const getLoginStatus = async () => {
+    const res = await request.get('/login/status');
+    console.log('登录状态', res);
+  };
+
   useEffect(() => {
+    getLoginStatus();
     let urlObj = _find(handleList, (o) => o.url === location.pathname);
     if (!urlObj) {
       if (location.pathname === '/songList'
@@ -106,7 +116,7 @@ function HandleContent() {
         </SpanIcon>
       </ItemWrapper>
       {
-        handleList.slice(0, 3).map((item) => (
+        handleList.slice(0, 3).map((item) => item.auth && (
           <ItemWrapper
             key={item.id}
             active={activeNum === item.id}
