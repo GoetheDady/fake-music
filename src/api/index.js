@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { message } from '../utils';
 
 const request = Axios.create({
-  baseURL: 'http://localhost:3000/', // api 的 base_url
+  baseURL: 'https://netease-cloud-music-api-bay-gamma.vercel.app/', // api 的 base_url
   timeout: 5000, // request timeout  设置请求超时时间
   responseType: 'json',
   withCredentials: true, // 是否允许带cookie这些
@@ -10,6 +10,20 @@ const request = Axios.create({
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
   },
+});
+
+request.interceptors.request.use((config) => {
+  const conf = {
+    ...config,
+  };
+  if (conf.method === 'GET') {
+    const { data } = config;
+    conf.data = JSON.stringify({
+      realIP: '34.150.95.106',
+      ...data,
+    });
+  }
+  return conf;
 });
 
 request.interceptors.response.use(
