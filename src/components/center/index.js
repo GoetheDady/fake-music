@@ -4,6 +4,7 @@ import {
 import Sider from '../sider';
 import Routers from '../../routers';
 import NavTop from '../navTop';
+import Account from '../account';
 
 function Content() {
   return (
@@ -17,6 +18,7 @@ function Content() {
         <ContentWrapper direction="column">
           <ContentHeader>
             <NavTop />
+            <Account />
           </ContentHeader>
           <ContentWrapper>
             <Routers />

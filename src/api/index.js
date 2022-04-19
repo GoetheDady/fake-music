@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { message } from '../utils';
 
 const request = Axios.create({
-  baseURL: 'http://localhost:4000/', // api 的 base_url
+  baseURL: 'http://localhost:3000/', // api 的 base_url
   timeout: 5000, // request timeout  设置请求超时时间
   responseType: 'json',
   withCredentials: true, // 是否允许带cookie这些
