@@ -3,19 +3,15 @@ import {
   BoutiqueListStyle, BoutiqueItem, BoutiqueItemImg,
   BoutiqueItemTitle, SpanTitle, BoutiqueItemMask,
 } from './style';
-import Loading from '../../../components/loading';
 import { calculatePlayCount } from '../../../utils';
-import { useLazyImg } from '../../../hooks';
 
 function BoutiqueList(props) {
   const { list = [] } = props;
   const navigate = useNavigate();
-  const showList = useLazyImg(list.map((item) => item.picUrl || item.coverImgUrl));
-
   return (
     <BoutiqueListStyle height="284px" length={list.length}>
       {
-        showList && list.length !== 0 ? list.map((item) => (
+        list.map((item) => (
           <BoutiqueItem
             key={item.id}
             onClick={() => {
@@ -32,7 +28,7 @@ function BoutiqueList(props) {
             </BoutiqueItemTitle>
             <BoutiqueItemMask />
           </BoutiqueItem>
-        )) : <Loading />
+        ))
       }
     </BoutiqueListStyle>
   );

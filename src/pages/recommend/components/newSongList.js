@@ -1,20 +1,28 @@
+import { useSelector, useDispatch } from 'react-redux';
 import {
   NewSongListStyle, NewSongItem, NewSongItemImgWrapper,
   NewSongItemDesc, NewSongItemAdd, NewSongItemImg, NewSongItemName,
   NewSongItemArtist, NewSongItemImgMask,
 } from './style';
-import Loading from '../../../components/loading';
-import { useLazyImg } from '../../../hooks';
+import { constants } from '../../../components/player/store';
 
 function NewSongList(props) {
   const { list = [], type = '' } = props;
-  const imageList = list.map((item) => (type === 'singer' ? item.al?.picUrl : item.picUrl));
-  const showList = useLazyImg(imageList);
+  const dispatch = useDispatch();
+
+  const playCurrentSong = (item) => {
+    dispatch({
+      type: constants.PLAYER_ADD_SONG_AND_PLAY,
+      payload: {
+        item,
+      },
+    });
+  };
   return (
     <NewSongListStyle height="180px">
       {
-        (showList && list.length !== 0) ? list.map((item) => (
-          <NewSongItem key={item.id}>
+        list.map((item) => (
+          <NewSongItem key={item.id} onDoubleClick={() => { playCurrentSong(item); }}>
             <NewSongItemImgWrapper>
               <NewSongItemImg src={type === 'singer' ? item.al?.picUrl : item.picUrl} />
               <NewSongItemImgMask>
@@ -35,7 +43,7 @@ function NewSongList(props) {
               <ion-icon name="add-outline" />
             </NewSongItemAdd>
           </NewSongItem>
-        )) : <Loading />
+        ))
       }
     </NewSongListStyle>
   );
