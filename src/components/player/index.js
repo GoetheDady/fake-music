@@ -145,7 +145,7 @@ class Player extends React.Component {
     const currentSong = playList[currentPlayIndex];
     const url = `https://music.163.com/song/media/outer/url?id=${currentSong?.id}.mp3`;
     const name = currentSong?.name;
-    const artist = currentSong?.ar.map((item) => item.name).join('/');
+    const artist = currentSong?.ar?.map((item) => item.name).join('/');
     const pic = currentSong?.al.picUrl;
     return (
       <PlayerStyle>
